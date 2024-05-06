@@ -1,36 +1,41 @@
 import React, { useRef } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { easing } from "maath";
 import { useSnapshot } from "valtio";
 
 import state from "../store";
-import Backdrop from "./Backdrop"; // Import the Backdrop component
 
 const CameraRig = ({ children }) => {
-  const snap = useSnapshot(state);
   const group = useRef();
+  const snap = useSnapshot(state);
 
-  return (
-    <group ref={group}>
-      {children}
-      <OrbitControls enableZoom={snap.enableZoom} /> // Assuming 'enableZoom' is
-      part of state
-    </group>
-  );
+  useFrame((state, delta) => {
+    const isBreakpoint = window.innerWidth <= 1260;
+    const isMobile = window.innerWidth <= 600;
+
+    // set the initial position of the model
+    let targetPosition = [-0.4, 0, 2];
+    if (snap.intro) {
+      if (isBreakpoint) targetPosition = [0, 0, 2];
+      if (isMobile) targetPosition = [0, 0.2, 2.5];
+    } else {
+      if (isMobile) targetPosition = [0, 0, 2.5];
+      else targetPosition = [0, 0, 2];
+    }
+
+    // set model camera position
+    easing.damp3(state.camera.position, targetPosition, 0.25, delta);
+
+    // set the model rotation smoothly
+    easing.dampE(
+      group.current.rotation,
+      [state.pointer.y / 8, -state.pointer.x / 1, 0],
+      0.25,
+      delta
+    );
+  });
+
+  return <group ref={group}>{children}</group>;
 };
 
-const Scene = () => {
-  return (
-    <Canvas>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      <CameraRig>
-        <Backdrop /> // Insert the Backdrop within the CameraRig
-        {/* Your model here */}
-      </CameraRig>
-    </Canvas>
-  );
-};
-
-export default Scene;
+export default CameraRig;
