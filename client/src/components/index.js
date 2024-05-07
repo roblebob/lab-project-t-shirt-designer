@@ -4,6 +4,7 @@ import ColorPicker from "./ColorPicker";
 import FilePicker from "./FilePicker";
 import Tab from "./Tab";
 import SavingTab from "./SavingTab";
+import AddSavingButton from "./AddSavingButton";
 
 export { 
   CustomButton,
@@ -12,4 +13,5 @@ export {
   FilePicker,
   Tab,
   SavingTab,
+  AddSavingButton,
 };

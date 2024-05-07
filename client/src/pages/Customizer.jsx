@@ -15,6 +15,7 @@ import {
   FilePicker,
   Tab,
   SavingTab,
+  AddSavingButton,
 } from "../components";
 
 import axios from "axios";
@@ -213,6 +214,7 @@ const Customizer = () => {
                       handleClick={() => {}}
                     />
                   ))}
+                <AddSavingButton />
               </div>
             </div>
           </motion.div>
