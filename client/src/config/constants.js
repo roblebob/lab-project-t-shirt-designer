@@ -37,23 +37,23 @@ export const DecalTypes = {
   },
 };
 
-export const SavingTabs = [
-  {
-    id: 1,
-    intro: true,
-    color: '#EFBD48',
-    isLogoTexture: true,
-    isFullTexture: false,
-    logoDecal: './threejs.png',
-    fullDecal: './threejs.png',
-  },
-  {
-    id: 2,
-    intro: true,
-    color: '#EFBD48',
-    isLogoTexture: true,
-    isFullTexture: false,
-    logoDecal: './vite.svg',
-    fullDecal: './vite.svg',
-  }
-];
+// export const SavingTabs = [
+//   {
+//     id: 1,
+//     intro: true,
+//     color: '#EFBD48',
+//     isLogoTexture: true,
+//     isFullTexture: false,
+//     logoDecal: './threejs.png',
+//     fullDecal: './threejs.png',
+//   },
+//   {
+//     id: 2,
+//     intro: true,
+//     color: '#EFBD48',
+//     isLogoTexture: true,
+//     isFullTexture: false,
+//     logoDecal: './vite.svg',
+//     fullDecal: './vite.svg',
+//   }
+// ];

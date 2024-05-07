@@ -6,12 +6,7 @@ import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
-import {
-  EditorTabs,
-  FilterTabs,
-  DecalTypes,
-  SavingTabs,
-} from "../config/constants";
+import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
 import {
   AIPicker,
@@ -21,6 +16,8 @@ import {
   Tab,
   SavingTab,
 } from "../components";
+
+import axios from "axios";
 
 const Customizer = () => {
   const snap = useSnapshot(state);
@@ -36,6 +33,18 @@ const Customizer = () => {
     stylishShirt: false,
   });
 
+  const [savedStates, setSavedStates] = useState([]);
+
+  useEffect(() => {
+    if (snap.needUpdate) {
+      axios
+        .get("http://localhost:5005/states")
+        .then((response) => setSavedStates(response.data))
+        .catch((error) => console.error(error));
+
+      state.needUpdate = false;
+    }
+  }, [snap.needUpdate]);
 
   // show tab content depending on the activeTab
   const generateTabContent = () => {
@@ -126,6 +135,8 @@ const Customizer = () => {
     });
   };
 
+  console.log("savedStates", savedStates);
+
   return (
     <AnimatePresence>
       {!snap.intro && (
@@ -191,16 +202,17 @@ const Customizer = () => {
           >
             <div className="flex items-center min-h-screen">
               <div className="saving-container tabs">
-                {SavingTabs.map((state, index) => (
-                  <SavingTab
-                    key={'saving' + index}
-                    _index={index}
-                    _state={state}
-                    isFilterTab
-                    isActiveTab={false}
-                    handleClick={() => {}}
-                  />
-                ))}
+                {savedStates &&
+                  savedStates.length > 0 &&
+                  savedStates.map((_state) => (
+                    <SavingTab
+                      key={"saving" + _state.id}
+                      _state={_state}
+                      isFilterTab
+                      isActiveTab={false}
+                      handleClick={() => {}}
+                    />
+                  ))}
               </div>
             </div>
           </motion.div>
