@@ -6,7 +6,12 @@ import config from "../config/config";
 import state from "../store";
 import { download } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
-import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
+import {
+  EditorTabs,
+  FilterTabs,
+  DecalTypes,
+  SavingTabs,
+} from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
 import {
   AIPicker,
@@ -14,6 +19,7 @@ import {
   CustomButton,
   FilePicker,
   Tab,
+  SavingTab,
 } from "../components";
 
 const Customizer = () => {
@@ -175,6 +181,27 @@ const Customizer = () => {
                 className="w-3/5 h-3/5 object-contain"
               />
             </button>
+          </motion.div>
+
+          <motion.div
+            key="saving"
+            className="absolute top-0 right-0 z-10"
+            {...slideAnimation("right")}
+          >
+            <div className="flex items-center min-h-screen">
+              <div className="saving-container tabs">
+                {SavingTabs.map((state, index) => (
+                  <SavingTab
+                    key={'saving' + index}
+                    _index={index}
+                    _state={state}
+                    isFilterTab
+                    isActiveTab={false}
+                    handleClick={() => {}}
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
         </>
       )}

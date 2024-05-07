@@ -36,3 +36,22 @@ export const DecalTypes = {
     filterTab: "stylishShirt",
   },
 };
+
+export const SavingTabs = [
+  {
+    intro: true,
+    color: '#EFBD48',
+    isLogoTexture: true,
+    isFullTexture: false,
+    logoDecal: './threejs.png',
+    fullDecal: './threejs.png',
+  },
+  {
+    intro: true,
+    color: '#EFBD48',
+    isLogoTexture: true,
+    isFullTexture: false,
+    logoDecal: './vite.svg',
+    fullDecal: './vite.svg',
+  }
+];
