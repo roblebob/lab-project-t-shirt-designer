@@ -4,7 +4,7 @@ import { useLongPress } from "@uidotdev/usehooks";
 
 import state from "../store";
 
-const SavingTab = ({ _state, _index, isFilterTab, isActiveTab }) => {
+const SavingTab = ({ _state, isFilterTab, isActiveTab }) => {
   const snap = useSnapshot(state);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -48,7 +48,7 @@ const SavingTab = ({ _state, _index, isFilterTab, isActiveTab }) => {
 
   return (
     <div
-      key={"SavingTab" + _index}
+      key={"SavingTab" + _state._id}
       className={`tab-btn ${
         isFilterTab ? "rounded-full glassmorphism" : "rounded-4"
       }`}
@@ -56,7 +56,7 @@ const SavingTab = ({ _state, _index, isFilterTab, isActiveTab }) => {
       style={activeStyles}
       {...attrs}
     >
-      {<span>{_index}</span>}
+      {<span>{_state._id}</span>}
     </div>
   );
 };

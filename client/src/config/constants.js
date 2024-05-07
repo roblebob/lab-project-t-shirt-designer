@@ -39,6 +39,7 @@ export const DecalTypes = {
 
 export const SavingTabs = [
   {
+    _id: 1,
     intro: true,
     color: '#EFBD48',
     isLogoTexture: true,
@@ -47,6 +48,7 @@ export const SavingTabs = [
     fullDecal: './threejs.png',
   },
   {
+    _id: 2,
     intro: true,
     color: '#EFBD48',
     isLogoTexture: true,
