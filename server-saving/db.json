@@ -2,8 +2,7 @@
   "states": [
     {
       "id": 1,
-      "intro": true,
-      "color": "#EFBD48",
+      "color": "#7a6a25",
       "isLogoTexture": true,
       "isFullTexture": false,
       "logoDecal": "./threejs.png",
@@ -11,12 +10,19 @@
     },
     {
       "id": 2,
-      "intro": true,
-      "color": "#EFBD48",
+      "color": "#524a2e",
       "isLogoTexture": true,
       "isFullTexture": false,
       "logoDecal": "./vite.svg",
       "fullDecal": "./vite.svg"
+    },
+    {
+      "id": 3,
+      "color": "#EFBD48",
+      "isLogoTexture": true,
+      "isFullTexture": false,
+      "logoDecal": "./threejs.png",
+      "fullDecal": "./threejs.png"
     }
   ]
 }
