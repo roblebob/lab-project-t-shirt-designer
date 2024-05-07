@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav style={generateNavbarStyle()} className="p-4">
-      <ul className="flex justify-start items-center space-x-4">
+      <ul className="absolut flex justify-start items-center space-x-4">
         <li>
           <Link
             to="/"

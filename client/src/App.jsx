@@ -10,13 +10,15 @@ import Customizer from "./pages/Customizer";
 const App = () => {
   return (
     <Router>
-      <Navbar />
-      <main className="app transition-all ease-in">
-        <Routes>
-          <Route path="/" element={<HomeWithCanvasAndCustomizer />} />
-          <Route path="/about-us" element={<AboutUs />} />
-        </Routes>
-      </main>
+      <div className="flex flex-col h-screen">
+        <Navbar className="flex-none" />
+        <main className="flex-grow overflow-auto">
+          <Routes>
+            <Route path="/" element={<HomeWithCanvasAndCustomizer />} />
+            <Route path="/about-us" element={<AboutUs />} />
+          </Routes>
+        </main>
+      </div>
     </Router>
   );
 };
