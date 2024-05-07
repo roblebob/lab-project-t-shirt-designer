@@ -48,7 +48,7 @@ const SavingTab = ({ _state, isFilterTab, isActiveTab }) => {
 
   return (
     <div
-      key={"SavingTab" + _state._id}
+      key={"SavingTab" + _state.id}
       className={`tab-btn ${
         isFilterTab ? "rounded-full glassmorphism" : "rounded-4"
       }`}
@@ -56,7 +56,7 @@ const SavingTab = ({ _state, isFilterTab, isActiveTab }) => {
       style={activeStyles}
       {...attrs}
     >
-      {<span>{_state._id}</span>}
+      {<span>{_state.id}</span>}
     </div>
   );
 };
