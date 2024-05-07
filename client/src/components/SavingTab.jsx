@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSnapshot } from "valtio";
 import { useLongPress } from "@uidotdev/usehooks";
 import axios from "axios";
+import { getContrastingColor } from "../config/helpers";
 
 import state from "../store";
 
@@ -56,7 +57,7 @@ const SavingTab = ({ _state, isFilterTab, isActiveTab }) => {
       style={{ backgroundColor: _state.color }}
       {...attrs}
     >
-      {<span>{_state.id}</span>}
+      {<span style={{color: getContrastingColor(_state.color)}}>{_state.id}</span>}
     </div>
   );
 };
