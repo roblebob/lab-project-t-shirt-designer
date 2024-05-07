@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSnapshot } from "valtio";
 import { useLongPress } from "@uidotdev/usehooks";
+import axios from "axios";
 
 import state from "../store";
 
@@ -8,11 +9,6 @@ const SavingTab = ({ _state, isFilterTab, isActiveTab }) => {
   const snap = useSnapshot(state);
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const activeStyles =
-    isFilterTab && isActiveTab
-      ? { backgroundColor: snap.color, opacity: 0.5 }
-      : { backgroundColor: "transparent", opacity: 1 };
 
   const loadState = () => {
     state.color = _state.color;
@@ -24,12 +20,18 @@ const SavingTab = ({ _state, isFilterTab, isActiveTab }) => {
 
   const saveState = () => {
     const stateToSave = {};
+    stateToSave.id = _state.id;
     stateToSave.color = snap.color;
     stateToSave.isLogoTexture = snap.isLogoTexture;
     stateToSave.isFullTexture = snap.isFullTexture;
     stateToSave.logoDecal = snap.logoDecal;
     stateToSave.fullDecal = snap.fullDecal;
     console.log("Saving state", stateToSave);
+    axios
+      .put(`http://localhost:5005/states/${stateToSave.id}`, stateToSave)
+      .then((response) => console.log(response))
+      .catch((error) => console.error(error));
+    state.needUpdate = true;
   };
 
   const attrs = useLongPress(
@@ -49,11 +51,9 @@ const SavingTab = ({ _state, isFilterTab, isActiveTab }) => {
   return (
     <div
       key={"SavingTab" + _state.id}
-      className={`tab-btn ${
-        isFilterTab ? "rounded-full glassmorphism" : "rounded-4"
-      }`}
-    //   onClick={handleClick}
-      style={activeStyles}
+      className="saving-tab-btn"
+      //   onClick={handleClick}
+      style={{ backgroundColor: _state.color }}
       {...attrs}
     >
       {<span>{_state.id}</span>}
