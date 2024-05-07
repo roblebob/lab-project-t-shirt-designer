@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
-import Canvas from "./Canvas";
+import CanvasModel from "./canvas";
 import Customizer from "./pages/Customizer";
 
 const App = () => {
@@ -27,7 +27,7 @@ const HomeWithCanvasAndCustomizer = () => {
   return (
     <>
       <Home />
-      <Canvas />
+      <CanvasModel />
       <Customizer />
     </>
   );
